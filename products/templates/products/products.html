@@ -11,11 +11,9 @@
         <div class="col-lg-3">
             <h1 class="my-4">GeekShop</h1>
             <div class="list-group">
-                <a href="#" class="list-group-item">Новинки</a>
-                <a href="#" class="list-group-item">Одежда</a>
-                <a href="#" class="list-group-item">Обувь</a>
-                <a href="#" class="list-group-item">Аксессуары</a>
-                <a href="#" class="list-group-item">Подарки</a>
+                {% for item in categories %}
+                    <a href="#" class="list-group-item">{{ item.name }}</a>
+                {% endfor %}
             </div>
         </div>
 
@@ -49,12 +47,12 @@
             </div>
 
             <div class="row">
-                {% for el in products|dictsort:"price" %}
+                {% for el in products %}
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100">
                         <a href="#">
                             <img class="card-img-top"
-                                 src="{% static '/' %}{{ el.img }}"
+                                 src="/media/{{ el.image }}"
                                  alt="">
                         </a>
                         <div class="card-body">
@@ -62,14 +60,10 @@
                                 <a href="#">{{ el.name|capfirst }}</a>
                             </h4>
                             <h5>{{ el.price }} руб.</h5>
-                            <p class="card-text">{{ el.description|default_if_none:"nothing"|capfirst|truncatechars:27 }}</p>
+                            <p class="card-text">{{ el.description|capfirst }}</p>
                         </div>
                         <div class="card-footer text-center">
-                            {% if el.in_basket == 'true' %}
-                                <button type="button" class="btn btn-outline-danger">{{ btn_text_rem }}</button>
-                            {% else %}
-                                <button type="button" class="btn btn-outline-success">{{ btn_text_add }}</button>
-                            {% endif %}
+                            <button type="button" class="btn btn-outline-success">Отправить в корзину</button>
                         </div>
                     </div>
                 </div>
