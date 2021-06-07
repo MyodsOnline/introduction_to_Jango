@@ -12,7 +12,7 @@
             <h1 class="my-4">GeekShop</h1>
             <div class="list-group">
                 {% for item in categories %}
-                    <a href="#" class="list-group-item">{{ item.name }}</a>
+                    <a href="#" class="list-group-item">{{ item.name|capfirst }}</a>
                 {% endfor %}
             </div>
         </div>
