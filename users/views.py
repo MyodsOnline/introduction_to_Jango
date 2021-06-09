@@ -3,7 +3,7 @@ from django.contrib import auth, messages
 from django.urls import reverse
 
 from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
-from basket.models import Basket
+from baskets.models import Basket
 
 
 # Create your views here.
@@ -48,8 +48,9 @@ def profile(request):
     else:
         form = UserProfileForm(instance=user)
     context = {'title': 'GeekShop - Личный кабинет', 'form': form,
-               'basket': Basket.objects.all()}
+               'baskets': Basket.objects.filter(user=user),}
     return render(request, 'users/profile.html', context)
+
 
 def logout(request):
     auth.logout(request)
