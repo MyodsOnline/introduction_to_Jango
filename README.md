@@ -1,1 +1,3 @@
-**Django project by diver.vlz**
+**Django project "Geekshop" **  
+*by diver.vlz*  
+
